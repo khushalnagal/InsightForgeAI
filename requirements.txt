@@ -1,0 +1,27 @@
+# Data & ML
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.5.1
+xgboost==2.1.0
+imbalanced-learn==0.12.3
+shap==0.46.0
+matplotlib==3.9.2
+joblib==1.4.2
+
+# Database
+SQLAlchemy==2.0.31
+mysql-connector-python==8.0.29
+
+# API + Agent
+fastapi==0.112.0
+uvicorn[standard]==0.30.5
+langgraph==0.2.3
+
+# LLM
+groq==0.9.0
+
+# Ingestion & utils
+requests==2.31.0
+kaggle==1.6.17
+python-dotenv==1.0.1
+loguru==0.7.2
