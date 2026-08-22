@@ -20,7 +20,7 @@ guidance without exposing the raw score to the reader.
             |
     SHAP Explainability  -->  top 3 risk drivers per customer
             |
-    GenAI Reason Cards (Groq/Llama)  -->  plain-English explanation, no raw score
+    GenAI Reason Cards (Groq / gpt-oss-20b)  -->  plain-English explanation, no raw score
             |
     API Server (FastAPI) + Query Agent (LangGraph)  -->  ask questions in natural language
 
@@ -77,7 +77,7 @@ reason-card step.
 ## GenAI Reason Cards
 
 The top-3 SHAP drivers for each at-risk customer go to an LLM (Groq /
-Llama 3.3) with instructions to produce a 3-sentence explanation: why the
+gpt-oss-20b) with instructions to produce a 3-sentence explanation: why the
 customer is at risk, what pattern their behavior shows, and what action to
 take in plain business language, with no model score or jargon exposed.
 
@@ -116,7 +116,7 @@ reason cards.
     python ingestion/kaggle_loader.py
     python ingestion/cfpb_api.py
     python processing/clean_complaints.py
-    python features/engineering.py
+    python processing/engineering.py
     python models/segmentation.py
     python models/churn_model.py
     python explainability/shap_analysis.py
@@ -152,3 +152,4 @@ reason cards.
 ## Author
 
 Khushal Nagal — [GitHub](https://github.com/khushalnagal) | [LinkedIn](https://linkedin.com/in/khushalnagal)
+READMEEOF
