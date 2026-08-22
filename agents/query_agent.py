@@ -82,14 +82,13 @@ Question: "{state['question']}"
 Reply with only the intent name, nothing else."""
 
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-20b",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=20,
+        max_tokens=200,
         temperature=0,
     )
-    intent = response.choices[0].message.content.strip()
-    if intent not in QUERY_MAP:
-        intent = "unknown"
+    raw = response.choices[0].message.content.strip().lower()
+    intent = next((k for k in QUERY_MAP if k in raw), "unknown")
     logger.info(f"Classified intent: {intent}")
     return {**state, "intent": intent}
 
@@ -117,7 +116,7 @@ Here is the query result: {state['rows']}
 Answer their question in 1-2 plain-English sentences. Be direct and specific, no technical jargon."""
 
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-20b",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=150,
         temperature=0.3,

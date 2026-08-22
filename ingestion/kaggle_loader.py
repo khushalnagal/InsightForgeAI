@@ -94,6 +94,9 @@ def load_transactions(engine):
     txn_df = df[["customer_id", "txn_date", "Amount", "category", "merchant_type"]].copy()
     txn_df.rename(columns={"Amount": "amount"}, inplace=True)
     txn_df["amount"] = txn_df["amount"].round(2)
+    txn_df["customer_id"] = txn_df["customer_id"].map(str)
+    txn_df["category"] = txn_df["category"].map(str)
+    txn_df["merchant_type"] = txn_df["merchant_type"].map(str)
 
     # Save processed copy
     os.makedirs("data/processed", exist_ok=True)

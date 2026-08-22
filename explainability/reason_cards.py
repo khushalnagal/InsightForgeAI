@@ -66,7 +66,7 @@ Be specific, professional, and actionable. Do not mention the raw churn
 probability or any model/SHAP terminology — write for a non-technical reader."""
 
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-20b",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=200,
                 temperature=0.7

@@ -48,15 +48,16 @@ def run_segmentation():
         logger.info(f"k={k} silhouette score: {score:.4f}")
 
     # Plot silhouette scores
+    os.makedirs('models', exist_ok=True)
     plt.figure(figsize=(8, 4))
     plt.plot(list(silhouette_scores.keys()), list(silhouette_scores.values()), marker='o')
     plt.title('Silhouette Score by Number of Clusters')
     plt.xlabel('Number of Clusters (k)')
     plt.ylabel('Silhouette Score')
     plt.tight_layout()
-    plt.savefig('notebooks/silhouette_scores.png')
+    plt.savefig('models/silhouette_scores.png')
     plt.close()
-    logger.info("Silhouette plot saved to notebooks/silhouette_scores.png")
+    logger.info("Silhouette plot saved to models/silhouette_scores.png")
 
     # Select best k
     best_k = 4
@@ -95,12 +96,11 @@ def run_segmentation():
     with engine.begin() as conn:
         for _, row in features[['customer_id', 'segment_label', 'cluster']].iterrows():
             conn.execute(text("""
-                INSERT INTO behavioral_segments (customer_id, segment_label, cluster_id)
-                VALUES (:cid, :label, :cluster_id)
+                INSERT INTO behavioral_segments (customer_id, segment_label)
+                VALUES (:cid, :label)
                 ON DUPLICATE KEY UPDATE
-                    segment_label = VALUES(segment_label),
-                    cluster_id = VALUES(cluster_id)
-            """), {"cid": row['customer_id'], "label": row['segment_label'], "cluster_id": int(row['cluster'])})
+                    segment_label = VALUES(segment_label)
+            """), {"cid": row['customer_id'], "label": row['segment_label']})
             rows_written += 1
 
     logger.info(f"Written {rows_written} rows to behavioral_segments")
