@@ -137,7 +137,7 @@ reason cards.
 | Segmentation | Scikit-learn (KMeans, PCA) |
 | Churn Model | XGBoost, imbalanced-learn (SMOTE) |
 | Explainability | SHAP |
-| Reason Cards | Groq API (Llama 3.3) |
+| Reason Cards | Groq API (gpt-oss-20b) |
 | API Server | FastAPI, Uvicorn |
 | Query Agent | LangGraph |
 
